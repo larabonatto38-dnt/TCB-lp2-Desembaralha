@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 public class Conexao {
     private static final String url = "jdbc:mysql://localhost:3306/desembaralha";
-    private static final String user = "aluno";
-    private static final String password = "aluno";
+    private static final String user = "root";
+    private static final String password = "lara";
 
     public static Connection conectar() throws SQLException{
         Connection conexao = DriverManager.getConnection(url, user, password);
