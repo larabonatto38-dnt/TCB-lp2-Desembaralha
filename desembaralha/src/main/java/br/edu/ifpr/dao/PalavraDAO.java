@@ -10,21 +10,20 @@ import java.util.List;
 import br.edu.ifpr.model.entities.Palavra;
 
 public class PalavraDAO {
-    
+
     // Cadastrar uma palavra vinculada a uma categoria.
     public void inserir(Palavra palavra) throws SQLException {
-        String sql = "INSERT INTO palavra(id_palavra, id_categoria, palavra_Correta, dica1, dica2) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO palavra(id_cat, palavra_Correta, dica1, dica2) VALUES (?,?,?,?);";
         Connection conexao = null;
         PreparedStatement stmt = null;
 
         try {
             conexao = Conexao.conectar();
             stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, palavra.getIdPalavra());
-            stmt.setInt(2, palavra.getIdCat());
-            stmt.setString(3, palavra.getPalavraCorreta());
-            stmt.setString(4, palavra.getDica1());
-            stmt.setString(5, palavra.getDica2());
+            stmt.setInt(1, palavra.getIdCat());
+            stmt.setString(2, palavra.getPalavraCorreta());
+            stmt.setString(3, palavra.getDica1());
+            stmt.setString(4, palavra.getDica2());
             stmt.executeUpdate();
             System.out.println("Palavra inserida com sucesso!");
 
@@ -38,7 +37,7 @@ public class PalavraDAO {
     }
 
     // Listar todas as palavras.
-    public List<Palavra> consultarTodos() throws SQLException {
+    public List<Palavra> consultarTodas() throws SQLException {
         String sql = "SELECT * FROM palavra";
         List<Palavra> palavras = new ArrayList<>();
         Connection conexao = null;
@@ -52,7 +51,7 @@ public class PalavraDAO {
             while (rs.next()) {
                 Palavra palavra = new Palavra();
                 palavra.setIdPalavra(rs.getInt("id_palavra"));
-                palavra.setIdCat(rs.getInt("id_categoria"));
+                palavra.setIdCat(rs.getInt("id_cat"));
                 palavra.setPalavraCorreta(rs.getString("palavra_Correta"));
                 palavra.setDica1(rs.getString("dica1"));
                 palavra.setDica2(rs.getString("dica2"));
@@ -86,7 +85,7 @@ public class PalavraDAO {
             while (rs.next()) {
                 palavra = new Palavra();
                 palavra.setIdPalavra(rs.getInt("id_palavra"));
-                palavra.setIdCat(rs.getInt("id_categoria"));
+                palavra.setIdCat(rs.getInt("id_cat"));
                 palavra.setPalavraCorreta(rs.getString("palavra_Correta"));
                 palavra.setDica1(rs.getString("dica1"));
                 palavra.setDica2(rs.getString("dica2"));
@@ -103,8 +102,8 @@ public class PalavraDAO {
     }
 
     // Listar palavras de determinada categoria.
-    public List<Palavra> consultarPorCategoria(int idCategoria) throws SQLException{
-        String sql = "SELECT * FROM palavra WHERE id_categoria = ?";
+    public List<Palavra> consultarPorCategoria(int idCategoria) throws SQLException {
+        String sql = "SELECT * FROM palavra WHERE id_cat = ?";
         List<Palavra> palavras = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement stmt = null;
@@ -119,7 +118,7 @@ public class PalavraDAO {
             while (rs.next()) {
                 Palavra palavra = new Palavra();
                 palavra.setIdPalavra(rs.getInt("id_palavra"));
-                palavra.setIdCat(rs.getInt("id_categoria"));
+                palavra.setIdCat(rs.getInt("id_cat"));
                 palavra.setPalavraCorreta(rs.getString("palavra_Correta"));
                 palavra.setDica1(rs.getString("dica1"));
                 palavra.setDica2(rs.getString("dica2"));
@@ -138,7 +137,7 @@ public class PalavraDAO {
 
     // Alterar os dados de uma palavra.
     public void atualizar(Palavra palavra) throws SQLException {
-         String sql = "UPDATE palavra SET id_categoria = ?, palavra_Correta = ?, dica1 = ?, dica2 = ? WHERE id_palavra = ?";
+        String sql = "UPDATE palavra SET id_cat = ?, palavra_Correta = ?, dica1 = ?, dica2 = ? WHERE id_palavra = ?";
         Connection conexao = null;
         PreparedStatement stmt = null;
 
@@ -163,7 +162,7 @@ public class PalavraDAO {
         }
     }
 
-    // 	Excluir uma palavra.
+    // Excluir uma palavra.
     public void excluir(int id) throws SQLException {
         String sql = "DELETE FROM palavra WHERE id_palavra = ?";
         Connection conexao = null;

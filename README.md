@@ -15,9 +15,9 @@ src/main/java/
 │       ├── Conexao.java #OK
 │       ├── CategoriaDAO.java #OK
 │       ├── PalavraDAO.java #OK
-│       ├── JogadorDAO.java !TODO
-│       ├── PartidaDAO.java !TODO
-│       └── RespostaPartidaDAO.java !TODO
+│       ├── JogadorDAO.java #OK
+│       ├── PartidaDAO.java #OK
+│       └── RespostaPartidaDAO.java #OK
 │
 ├── view/
 │   ├── TelaInicial.java !TODO

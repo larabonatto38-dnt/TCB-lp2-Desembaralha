@@ -68,7 +68,7 @@ public class CategoriaDAO {
 
     // Consultar uma categoria pelo identificador.
     public Categoria consultarPorId(int id) throws SQLException {
-        String sql = "SELECT * FROM categoria WHERE id = ?";
+        String sql = "SELECT * FROM categoria WHERE id_categoria = ?";
         Categoria categoria = null;
         Connection conexao = null;
         PreparedStatement stmt = null;
@@ -99,7 +99,7 @@ public class CategoriaDAO {
 
     // Alterar a categoria.
     public void atualizar(Categoria categoria) throws SQLException {
-        String sql = "UPDATE PRODUTO SET nome = ?, descricao = ? WHERE id_categoria = ?";
+        String sql = "UPDATE categoria SET nome = ?, descricao = ? WHERE id_categoria = ?";
         Connection conexao = null;
         PreparedStatement stmt = null;
 
@@ -124,7 +124,7 @@ public class CategoriaDAO {
 
     // Excluir uma categoria.
     public void excluir(int id) throws SQLException {
-        String sql = "DELETE FROM categoria WHERE id = ?";
+        String sql = "DELETE FROM categoria WHERE id_categoria = ?";
         Connection conexao = null;
         PreparedStatement stmt = null;
 
